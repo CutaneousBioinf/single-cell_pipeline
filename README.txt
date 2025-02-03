@@ -6,11 +6,10 @@ Welcome to the Single-Cell Pipeline!
     Check out the second page of the slides in the repo
 
 
--------------------- Please do not modify this directory, thx! --------------------
---------------- Instead, follow the first step and set up your own ----------------
 # 1. Setting up your local repo:
 
-    $ cp -r /hits/lica/scripts/sc-pipeline path_to_your_directory/
+    $ git clone https://github.com/lica-2025/single-cell_pipeline.git
+    $ cd single-cell_pipeline
 
 
 # 2. Setting up environment:
@@ -98,7 +97,6 @@ Welcome to the Single-Cell Pipeline!
 
 # 6. Running sc-pipeline
 
-        $ cd /path_to_your_directory/sc-pipeline/
         $ bash run_sc-pipeline.sh
 
 
