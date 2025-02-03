@@ -1,0 +1,10 @@
+{
+
+    "input_dir": "",
+    "cache_dir": "",
+    "figure_dir": "",
+
+    "harmony_by": "batch",
+
+    "n_cores": 8
+}

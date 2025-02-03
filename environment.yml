@@ -1,0 +1,24 @@
+name: sc-pipeline-test
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12.8
+  - pip=25.0
+  - r-argparse=2.2.5
+  - r-base=4.4.1
+  - r-hdf5r=1.3.12
+  - r-igraph=2.0.3
+  - r-seurat=5.1.0
+  - r-seuratobject=5.0.2
+  - r-soupx=1.6.2
+  - pip:
+      - anndata==0.11.3
+      - h5py==3.12.1
+      - harmonypy==0.0.10
+      - igraph==0.11.8
+      - leidenalg==0.10.2
+      - matplotlib==3.10.0
+      - numpy==2.1.3
+      - pandas==2.2.3
+      - scanpy==1.10.4
+      - scikit-image==0.25.1
