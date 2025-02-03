@@ -27,6 +27,6 @@ def clustering(config):
     sc.pp.neighbors(adata, key_added='after_harmony', use_rep='X_pca_harmony')
     sc.tl.umap(adata, neighbors_key='after_harmony')
     adata.obsm['X_umap_after_harmony'] = adata.obsm['X_umap'].copy()
-    sc.pl.umap(adata, neighbors_key='after_harmony', color='harmony_by', title='UMAP after Harmony', save='umap_after_harmony.png')  
+    sc.pl.umap(adata, neighbors_key='after_harmony', color=config['harmony_by'], title='UMAP after Harmony', save='umap_after_harmony.png')  
 
     output_adata(adata, output_path)
