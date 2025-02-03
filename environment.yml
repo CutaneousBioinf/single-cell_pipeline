@@ -1,4 +1,4 @@
-name: sc-pipeline-test
+name: sc-pipeline
 channels:
   - conda-forge
 dependencies:
