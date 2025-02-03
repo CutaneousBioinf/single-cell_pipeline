@@ -1,24 +1,24 @@
-Welcome to the Single-Cell Pipeline!
+# Welcome to the Single-Cell Pipeline!
 
 
-# 0. Pipeline Overview
+## 0. Pipeline Overview
 
 Check out the second page of the slides in the repo
 
 
-# 1. Setting up your local repo:
+## 1. Setting up your local repo:
     $ git clone https://github.com/lica-2025/single-cell_pipeline.git
     $ cd single-cell_pipeline
 
 
-# 2. Setting up environment:
+## 2. Setting up environment:
     $ mamba env create -f environment.yml
     $ mamba activate sc-pipeline
 
 You can change the environment name in the first line of environment.yml
 
 
-# 3. Take a look at the repo directory:
+## 3. Take a look at the repo directory:
 
     path_to_your_directory/sc-pipeline/
         ├── src/
@@ -44,35 +44,32 @@ You can change the environment name in the first line of environment.yml
         └── run_sc-pipeline.sh
 
 
-# 4. Setting up the configuration file:
+## 4. Setting up the configuration file:
 
 Make a copy of the sample configuration file
+
     $ cp /path_to_your_directory/sc-pipeline/config/config_sample.json /path_to_your_directory/sc-pipeline/config/config.json 
 
 
 
-## input_dir
-This is the path_to_input_directory/
-Please read the next bullet point for details
+### input_dir
+This is the path to the input directory, please read the next bullet point for details.
 
-## cache_dir
-This is the path_to_cache_directory/, where temporary output objects from each step are saved
-No need to pre-create
+### cache_dir
+This is the path to the cache directory, where temporary output objects from each step are saved. No need to pre-create
 
-## figure_dir
-This is the path_to_figure_directory/, where figures from the pipelien are saved
-No need to pre-create
+### figure_dir
+This is the path to the figure directory, where figures from the pipelien are saved. No need to pre-create.
 
-## harmony_by
-This should be one of the columns names in adata.obs
-This column will be used in batch-correction
+### harmony_by
+This should be one of the columns names in adata.obs. The column will be used in batch-correction.
 
-## n_cores
-This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running are sample level thus being parallelized
+### n_cores
+This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running are sample level thus being parallelized.
 
 
 
-# 5. Preparing input files
+## 5. Preparing input files
 
     /path_to_input_directory/
     ├── metadata.csv
@@ -93,35 +90,39 @@ This is #cores used for the pipeline, which will only affect cooking soup, remov
     ├── .../
 
 
-# 6. Running sc-pipeline
+## 6. Running sc-pipeline
 
     $ bash run_sc-pipeline.sh
 
 
-# 7. Monitoring
+## 7. Monitoring
 
-## Is the job still running?
+### Is the job still running?
 
     $ ps -u (your_server_login_name)
 
-## How to find the job's pid?
+### How to find the job's pid?
 Check 
 
     /log/pipeline_yyyymmdd_hhmmss.pid
 
 where the time in the filename is the starting time (GMT)
 
-## Which step is the job running now?
+### Which step is the job running now?
 Check 
 
-    /log/info.log for current progress
+    /log/info.log
+    
+for current progress
 
-## What's wrong with the job?
+### What's wrong with the job?
 Check 
 
-    /log/err.log for any interuptions
+    /log/err.log
+    
+for any interuptions
 
-## How to terminate the pipeline?
+### How to terminate the pipeline?
 
     $ kill -9 (pid)
 
@@ -133,7 +134,7 @@ There might still be sub-threads running, to kill them:
 Cautious: these will kill all your other python and R jobs (if exists)
 
 
-# 8. Output
+## 8. Output
 
 Find figures in 
 
