@@ -7,17 +7,14 @@ Check out the second page of the slides in the repo
 
 
 # 1. Setting up your local repo:
-    ```bash
     $ git clone https://github.com/lica-2025/single-cell_pipeline.git
     $ cd single-cell_pipeline
-    ```
 
 
 # 2. Setting up environment:
-    ```bash
     $ mamba env create -f environment.yml
     $ mamba activate sc-pipeline
-    ```
+
 You can change the environment name in the first line of environment.yml
 
 
@@ -58,7 +55,7 @@ Make a copy of the sample configuration file
 This is the path_to_input_directory/
 Please read the next bullet point for details
 
-## cache_dir"
+## cache_dir
 This is the path_to_cache_directory/, where temporary output objects from each step are saved
 No need to pre-create
 
@@ -104,29 +101,48 @@ This is #cores used for the pipeline, which will only affect cooking soup, remov
 # 7. Monitoring
 
 ## Is the job still running?
-$ ps -u (your_server_login_name)
+
+    $ ps -u (your_server_login_name)
 
 ## How to find the job's pid?
-check /log/pipeline_yyyymmdd_hhmmss.pid, where the time in the filename is the starting time (GMT)
+Check 
+
+    /log/pipeline_yyyymmdd_hhmmss.pid
+
+where the time in the filename is the starting time (GMT)
 
 ## Which step is the job running now?
-check /log/info.log for current progress
+Check 
+
+    /log/info.log for current progress
 
 ## What's wrong with the job?
-check /log/err.log for any interuptions
+Check 
+
+    /log/err.log for any interuptions
 
 ## How to terminate the pipeline?
+
     $ kill -9 (pid)
-there might still be sub-threads running, to kill them:
+
+There might still be sub-threads running, to kill them:
+
     $ pkill -u (your_server_login_name) python
     $ pkill -u (your_server_login_name) R
+
 Cautious: these will kill all your other python and R jobs (if exists)
 
 
 # 8. Output
 
-Find figures in /path_to_figure_directory/
+Find figures in 
 
-Find objects in /path_to_cache_directory/
+    path_to_figure_directory/
 
-The final object is at /path_to_cache_directory/clustered.h5ad
+Find objects in
+
+    path_to_cache_directory/
+
+The final object is at
+
+    path_to_cache_directory/clustered.h5ad
