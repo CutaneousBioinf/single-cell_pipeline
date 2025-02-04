@@ -71,7 +71,7 @@ This is #cores used for the pipeline, which will only affect cooking soup, remov
 
 ## 5. Preparing input files
 
-    /path_to_input_directory/
+    path_to_input_directory/
     ├── metadata.csv
     │       Sample_ID,Batch
     │       sample_1,1
