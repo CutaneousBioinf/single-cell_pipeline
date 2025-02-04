@@ -65,7 +65,7 @@ This is the path to the figure directory, where figures from the pipeline are sa
 This should be one of the columns names in adata.obs. For now, "batch" and "sample_id" are supported. The column will be used in batch-correction.
 
 ### n_cores
-This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running are sample level thus being parallelized.
+This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running on sample level thus being parallelized.
 
 
 
