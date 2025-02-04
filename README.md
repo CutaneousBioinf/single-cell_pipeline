@@ -59,10 +59,10 @@ This is the path to the input directory, please read the next bullet point for d
 This is the path to the cache directory, where temporary output objects from each step are saved. No need to pre-create
 
 ### figure_dir
-This is the path to the figure directory, where figures from the pipelien are saved. No need to pre-create.
+This is the path to the figure directory, where figures from the pipeline are saved. No need to pre-create.
 
 ### harmony_by
-This should be one of the columns names in adata.obs. The column will be used in batch-correction.
+This should be one of the columns names in adata.obs. For now, "batch" and "sample_id" are supported. The column will be used in batch-correction.
 
 ### n_cores
 This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running are sample level thus being parallelized.
