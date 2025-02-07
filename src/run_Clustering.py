@@ -3,10 +3,10 @@ import scanpy as sc
 import os
 from utils import check_matrix_files, output_adata
 
-def clustering(config):
+def cluster(config):
 
     cache_dir = config['cache_dir']
-    input_path = os.path.join(cache_dir, 'harmonyed.h5ad')
+    input_path = os.path.join(cache_dir, 'umaped.h5ad')
     output_path = os.path.join(cache_dir, 'clustered.h5ad')
 
     sc.settings.figdir = config['figure_dir']
@@ -17,16 +17,23 @@ def clustering(config):
     
     adata = sc.read_h5ad(input_path)
 
-    logging.info('Clustering with before harmony data')
-    sc.pp.neighbors(adata, key_added='before_harmony', use_rep='X_pca')
-    sc.tl.umap(adata, neighbors_key='before_harmony')
-    adata.obsm['X_umap_before_harmony'] = adata.obsm['X_umap'].copy()
-    sc.pl.umap(adata, neighbors_key='before_harmony', color=config['harmony_by'], title='UMAP before Harmony', save='umap_before_harmony.png')
+    for res in config['resolutions']:
+        logging.info('Clustering with resolution: %f...', res)
+        sc.tl.leiden(
+            adata, 
+            neighbors_key="after_harmony", 
+            key_added=f"leiden_res_{res:4.2f}", 
+            resolution=res, 
+            flavor="igraph"
+        )
 
-    logging.info('Clustering with after harmony data')
-    sc.pp.neighbors(adata, key_added='after_harmony', use_rep='X_pca_harmony')
-    sc.tl.umap(adata, neighbors_key='after_harmony')
-    adata.obsm['X_umap_after_harmony'] = adata.obsm['X_umap'].copy()
-    sc.pl.umap(adata, neighbors_key='after_harmony', color=config['harmony_by'], title='UMAP after Harmony', save='umap_after_harmony.png')  
+    logging.info('Plotting UMAP...')
+    cls = [f'leiden_res_{res:.2f}' for res in config['resolutions']]
+    sc.pl.umap(
+        adata,
+        color=cls,
+        legend_loc="on data",
+        save="umap_leiden.png",
+    )
 
     output_adata(adata, output_path)

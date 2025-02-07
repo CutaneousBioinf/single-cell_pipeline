@@ -4,3 +4,4 @@
 *.pid
 *.DS_Store
 *.pdf
+config.json

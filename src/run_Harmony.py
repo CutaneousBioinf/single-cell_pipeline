@@ -16,6 +16,6 @@ def harmony(config):
     
     adata = sc.read_h5ad(input_path)
 
-    sc.external.pp.harmony_integrate(adata, key=config['harmony_by'])
+    sc.external.pp.harmony_integrate(adata, key='harmony_by')
 
     output_adata(adata, output_path)

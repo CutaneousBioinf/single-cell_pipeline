@@ -4,7 +4,8 @@
     "cache_dir": "",
     "figure_dir": "",
 
-    "harmony_by": "batch",
+    "metadata_filename": "",
+    "harmony_by": "",
 
     "n_cores": 8
 }

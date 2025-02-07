@@ -34,7 +34,7 @@ def process_sample(sample_id, input_dir, output_dir):
 
 
 def parallel_SoupX(config):
-    meta_df = load_meta_data(config['input_dir'])
+    meta_df = load_meta_data(config['input_dir'], config['metadata_filename'])
     sample_ids = meta_df.iloc[:, 0].tolist()
 
     process_sample_partial = partial(process_sample, input_dir=config['input_dir'], output_dir=config['cache_dir'])
