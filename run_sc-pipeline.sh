@@ -1,3 +1,4 @@
+mkdir log
 echo "" > log/info.log
 echo "" > log/err.log
 timestamp=$(date +"%Y%m%d_%H%M%S")
