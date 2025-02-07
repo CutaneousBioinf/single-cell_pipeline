@@ -36,7 +36,7 @@ You can change the environment name in the first line of environment.yml
         ├── config/
         │   ├── config_sample.json
         │   └── (config.json)
-        ├── log/
+        ├── (log/)
         │   ├── (info.log)
         │   ├── (err.log)
         │   └── (pipeline_yyyymmdd_hhmmss.pid)
@@ -66,6 +66,9 @@ This should be one of the columns names in the metadata. The column will be used
 
 ### metadata_filename
 You can change this to match the metadata file's name in the input directory.
+
+### resolutions
+This is the resolution used by leiden for cell clustering. Smaller value means less #cluster.
 
 ### n_cores
 This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running on sample level thus being parallelized.
