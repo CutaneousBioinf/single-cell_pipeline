@@ -14,7 +14,7 @@
     "harmony_by": "Batch",
     "clustering_resolutions": [0.20, 0.40, 0.60, 0.80],
     "ranking_resolutions": [0.60, 0.80],
-    "annotation_resolutions": [0.60],
+    "annotation_resolutions": 0.60,
     "marker_genes": {
         "pval": 0.01,
         "fc": 1.0
