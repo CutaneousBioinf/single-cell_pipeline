@@ -10,7 +10,7 @@ def qc(config):
     cache_dir = config['cache_dir']
     input_path = os.path.join(cache_dir, 'merged.h5ad')
 
-    if not check_matrix_files(input_path, 'merge'):
+    if not check_matrix_files(input_path, 'qc'):
         logging.info('---------- Missing Input File: merged.h5ad ----------')        
         return
     
@@ -26,10 +26,10 @@ def qc(config):
 
     # ---------- Adjust QC metrics here ----------
     # ---------- TODO: Should be configured in config.json in the future ----------
-    adata.obs['Low_nFeature'] = adata.obs['n_genes_by_counts'] <= 200
-    adata.obs['Doublet'] = adata.obs['doublet_score'] >= 1.00
-    adata.obs['High_MT'] = adata.obs['pct_counts_mt'] >= 1.00
-    adata.obs['Pass'] = (adata.obs['n_genes_by_counts'] > 200) & (adata.obs['doublet_score'] < 1.00) & (adata.obs['pct_counts_mt'] < 1.00)
+    adata.obs['Low_nFeature'] = adata.obs['n_genes_by_counts'] < 200
+    adata.obs['Doublet'] = adata.obs['doublet_score'] > 0.15
+    adata.obs['High_MT'] = adata.obs['pct_counts_mt'] > 10.0
+    adata.obs['Pass'] = (adata.obs['n_genes_by_counts'] >= 200) & (adata.obs['doublet_score'] <= 0.15) & (adata.obs['pct_counts_mt'] <= 10.0)
     # logging.info('Columns in adata.obs: %s', adata.obs.columns.tolist())
 
     conditions = [

@@ -24,9 +24,11 @@ def export_barcodes_and_genes(input_dir, output_dir):
     adata.obs[[]].to_csv(os.path.join(output_dir, 'barcodes.tsv'), header=False, sep='\t')
 
 def load_meta_data(input_dir, filename='metadata.csv', extra_columns=[]):
+    # In run_Merge.py, if adds more columns to extra_columns, 
+    # make sure config['harmony_by'] is the first one.
     meta_path = os.path.join(input_dir, filename)
     meta_df = pd.read_csv(meta_path)
-    meta_df = meta_df[['Sample_ID', 'Batch'] + extra_columns]
+    meta_df = meta_df[['Sample_ID'] + extra_columns]
     return meta_df
 
 def output_adata(adata, output_path):

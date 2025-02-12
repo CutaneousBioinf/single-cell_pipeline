@@ -8,10 +8,12 @@ from run_QC import qc
 from run_Norm import normalization
 from run_PCA import pca
 from run_Harmony import harmony
-from run_Clustering import clustering
+from run_UMAP import umap
+from run_Clustering import cluster
+from run_Ranking import rank
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', filename='log/info.log', filemode='w')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', filename='log/info.log', filemode='a')
 
 def main():
     os.chdir(os.getcwd())
@@ -55,9 +57,19 @@ def main():
     harmony(config)
 
     logging.info('-------------------------------------------------------')
-    logging.info('-------------------- Clustering -----------------------')
+    logging.info('----------------- Visualizing Harmony -----------------')
     logging.info('-------------------------------------------------------')
-    clustering(config)
+    umap(config)
+
+    logging.info('-------------------------------------------------------')
+    logging.info('---------------------- Clustering ---------------------')
+    logging.info('-------------------------------------------------------')
+    cluster(config)
+
+    logging.info('-------------------------------------------------------')
+    logging.info('--------------------- Ranking Genes -------------------')
+    logging.info('-------------------------------------------------------')
+    rank(config)
 
     logging.info('-------------------------------------------------------')
     logging.info('----------------------- Done! -------------------------')

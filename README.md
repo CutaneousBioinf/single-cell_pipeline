@@ -40,7 +40,7 @@ You can change the environment name in the first line of environment.yml
         │   ├── (info.log)
         │   ├── (err.log)
         │   └── (pipeline_yyyymmdd_hhmmss.pid)
-        ├── README.txt
+        ├── README.md
         └── run_sc-pipeline.sh
 
 
@@ -62,7 +62,10 @@ This is the path to the cache directory, where temporary output objects from eac
 This is the path to the figure directory, where figures from the pipeline are saved. No need to pre-create.
 
 ### harmony_by
-This should be one of the columns names in adata.obs. For now, "batch" and "sample_id" are supported. The column will be used in batch-correction.
+This should be one of the columns names in the metadata. The column will be used in batch-correction.
+
+### metadata_filename
+You can change this to match the metadata file's name in the input directory.
 
 ### n_cores
 This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running on sample level thus being parallelized.
