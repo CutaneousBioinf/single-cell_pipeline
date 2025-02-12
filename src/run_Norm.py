@@ -6,7 +6,7 @@ from utils import check_matrix_files, output_adata
 
 def normalization(config):
 
-    cache_dir = config['cache_dir']
+    cache_dir = os.path.join(config['cache_dir'], 'cohort-level')
     input_path = os.path.join(cache_dir, 'qced.h5ad')
     output_path = os.path.join(cache_dir, 'normed.h5ad')
 

@@ -32,7 +32,10 @@ You can change the environment name in the first line of environment.yml
         │   ├── run_Norm.py
         │   ├── run_PCA.py
         │   ├── run_Harmony.py
+        │   └── run_UMAP.py
         │   └── run_Clustering.py
+        │   └── run_Ranking.py
+        │   └── run_Annotation.py
         ├── config/
         │   ├── config_sample.json
         │   └── (config.json)
@@ -40,8 +43,12 @@ You can change the environment name in the first line of environment.yml
         │   ├── (info.log)
         │   ├── (err.log)
         │   └── (pipeline_yyyymmdd_hhmmss.pid)
+        ├── run_sc-pipeline.sh
+        ├── environment.yml
+        ├── .gitignore
         ├── README.md
-        └── run_sc-pipeline.sh
+        └── LICENSE
+
 
 
 ## 4. Setting up the configuration file:
@@ -51,29 +58,51 @@ Make a copy of the sample configuration file
     $ cp /path_to_your_directory/sc-pipeline/config/config_sample.json /path_to_your_directory/sc-pipeline/config/config.json 
 
 
+### Directories
 
-### input_dir
-This is the path to the input directory, please read the next bullet point for details.
+#### input_dir
+Path to the input directory, please read the next bullet point for details.
 
-### cache_dir
-This is the path to the cache directory, where temporary output objects from each step are saved. No need to pre-create
+#### cache_dir
+Path to the cache directory, where temporary output objects and csvs from each step are saved. No need to pre-create.
 
-### figure_dir
-This is the path to the figure directory, where figures from the pipeline are saved. No need to pre-create.
+#### figure_dir
+Path to the figure directory, where figures from the pipeline are saved. No need to pre-create.
 
-### harmony_by
-This should be one of the columns names in the metadata. The column will be used in batch-correction.
-
-### metadata_filename
+#### metadata_filename
 You can change this to match the metadata file's name in the input directory.
-<<<<<<< HEAD
-=======
 
-### resolutions
-This is the resolution used by leiden for cell clustering. Smaller value means less #cluster.
->>>>>>> 2bbac3071cc55c1d7853a1d1a92e810372a17376
+### Parameters
 
-### n_cores
+#### qc_metrics
+Dictionary dictating QC metrics. Supported keys: min_gene_per_cell, max_doublet_score, max_mt_percentage.
+
+#### n_pcs
+Number of Principal Components to keep at the end of the PCA step.
+
+#### harmony_by
+Should be one of the columns names in the metadata. The column will be used in batch-correction.
+
+#### marker_genes
+Dictionary dictating marker gene identifying metrics. Should include only: pval (max p-value) and fc (min fold change). fc should be positive number. Only up-regulated genes will be identified.
+
+#### annotation
+Dictionary assigning cell type to each cluster. Keep empty if don't want to run annotation, otherwise make sure length of this dictionary matches #cluster with resolution == annotation_resolution.
+
+### Resolutions
+
+#### clustering_resolutions
+Plot UMAP with different resolutions to decide the best resolution. Greater value of resolution generates more clusteres.
+
+#### ranking_resolutions
+Identify significant genes with different resolutions. ranking_resolutions must be a subset of clustering_resolutions because ranking is based on clustering.
+
+##### annotation_resolution
+Plot UMAP with cluster names. annotation_resolutions must be an element from ranking_resolutions because annotation is based on clustering.
+
+### Performance
+
+#### n_cores
 This is #cores used for the pipeline, which will only affect cooking soup, removing doublet, and merging steps, as these are running on sample level thus being parallelized.
 
 

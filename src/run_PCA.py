@@ -5,7 +5,7 @@ from utils import check_matrix_files, output_adata
 
 def pca(config):
 
-    cache_dir = config['cache_dir']
+    cache_dir = os.path.join(config['cache_dir'], 'cohort-level')
     input_path = os.path.join(cache_dir, 'normed.h5ad')
     output_path = os.path.join(cache_dir, 'pcaed.h5ad')
 
@@ -13,7 +13,9 @@ def pca(config):
         logging.info('---------- Missing Input File: normed.h5ad ----------')        
         return
 
-    sc.settings.figdir = config['figure_dir']
+    figure_dir = os.path.join(config['figure_dir'], 'pca')
+    os.makedirs(figure_dir, exist_ok=True)
+    sc.settings.figdir = figure_dir
     
     adata = sc.read_h5ad(input_path)
 
@@ -23,6 +25,6 @@ def pca(config):
 
     sc.pl.pca_variance_ratio(adata, n_pcs=50, save='pca_variance_ratio.png')
 
-    adata.obsm['X_pca'] = adata.obsm['X_pca'][:, :20]
+    adata.obsm['X_pca'] = adata.obsm['X_pca'][:, :config['n_pcs']]
 
     output_adata(adata, output_path)

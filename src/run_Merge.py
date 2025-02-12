@@ -11,7 +11,7 @@ from utils import check_matrix_files, load_meta_data, output_adata
 def process_sample(arg, input_dir):
     sample_id, harmony_by = arg[0], arg[1]
 
-    input_path = os.path.join(input_dir, sample_id, 'removed', 'cooked_and_removed.h5ad')
+    input_path = os.path.join(input_dir, sample_id, 'doublet_calculated.h5ad')
 
     if not check_matrix_files(input_path, 'merge'):
         logging.info('---------- Missing Input File from %s ----------', sample_id)        
@@ -20,13 +20,8 @@ def process_sample(arg, input_dir):
     logging.info("Merging %s...", sample_id)
 
     adata = sc.read_h5ad(input_path)
-<<<<<<< HEAD
-    adata.obs['sample_id'] = sample_id
-    adata.obs['harmony_by'] = harmony_by
-=======
     adata.obs['sample_id'] = str(sample_id)
     adata.obs['harmony_by'] = str(harmony_by)
->>>>>>> 2bbac3071cc55c1d7853a1d1a92e810372a17376
 
     # Updating barcodes to include sample_id
     adata.obs['barcode_sample'] = adata.obs.index
@@ -41,10 +36,13 @@ def parallel_Merge(config):
     batchs = meta_df.iloc[:, 1].tolist()
     args = zip(sample_ids, batchs)
     
-    process_sample_partial = partial(process_sample, input_dir=config['cache_dir'])
+    process_sample_partial = partial(process_sample, input_dir=os.path.join(config['cache_dir'], 'sample-level'))
 
-    with Pool() as pool:
+    with Pool(processes=config['n_cores']) as pool:
         adatas = [adata for adata in pool.map(process_sample_partial, args) if adata is not None]
 
     merged_adata = ad.concat(adatas)
-    output_adata(merged_adata, os.path.join(config['cache_dir'], 'merged.h5ad'))
+
+    output_dir = os.path.join(config['cache_dir'], 'cohort-level')
+    os.makedirs(output_dir, exist_ok=True)
+    output_adata(merged_adata, os.path.join(output_dir, 'merged.h5ad'))
