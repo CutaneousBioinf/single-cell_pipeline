@@ -6,6 +6,10 @@
 
     "metadata_filename": "",
     "harmony_by": "",
+<<<<<<< HEAD
+=======
+    "resolutions": [0.01, 0.02, 0.04, 0.08, 0.16, 0.24, 0.32, 0.40],
+>>>>>>> 2bbac3071cc55c1d7853a1d1a92e810372a17376
 
     "n_cores": 8
 }

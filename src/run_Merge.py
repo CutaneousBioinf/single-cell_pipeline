@@ -20,8 +20,13 @@ def process_sample(arg, input_dir):
     logging.info("Merging %s...", sample_id)
 
     adata = sc.read_h5ad(input_path)
+<<<<<<< HEAD
     adata.obs['sample_id'] = sample_id
     adata.obs['harmony_by'] = harmony_by
+=======
+    adata.obs['sample_id'] = str(sample_id)
+    adata.obs['harmony_by'] = str(harmony_by)
+>>>>>>> 2bbac3071cc55c1d7853a1d1a92e810372a17376
 
     # Updating barcodes to include sample_id
     adata.obs['barcode_sample'] = adata.obs.index
