@@ -20,7 +20,7 @@ You can change the environment name in the first line of environment.yml
 
 ## 3. Take a look at the repo directory:
 
-    path_to_your_directory/sc-pipeline/
+    path_to_your_directory/single-cell_pipeline/
         ├── src/
         │   ├── main.py
         │   ├── utils.py
