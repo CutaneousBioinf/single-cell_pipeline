@@ -71,11 +71,11 @@ def main():
     logging.info('-------------------------------------------------------')
     rank(config)
 
-    if len(config['annotation']) > 0:
-            logging.info('-------------------------------------------------------')
-            logging.info('------------------ Annotating Clusters ----------------')
-            logging.info('-------------------------------------------------------')
-            annotation(config)
+    # if len(config['annotation']) > 0:
+    #         logging.info('-------------------------------------------------------')
+    #         logging.info('------------------ Annotating Clusters ----------------')
+    #         logging.info('-------------------------------------------------------')
+    #         annotation(config)
 
 
     logging.info('-------------------------------------------------------')

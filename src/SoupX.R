@@ -28,10 +28,10 @@ seurat <- CreateSeuratObject(counts = filt.matrix)
 
 # --- sometimes input file has multiple layers, which will also include extra features ---
 # --- In the following example, we only use the couts.Gene layer and the extra featrues are automatically removed ---
-filt.matrix <- LayerData(seurat[["RNA"]], layer = "counts.Gene Expression") # get the layer we want
-seurat <- CreateSeuratObject(counts = filt.matrix)  # re-create the object using one-layer matrix
-seurat_raw <- CreateSeuratObject(counts = raw.matrix)   # same steps for raw matrix
-raw.matrix <- LayerData(seurat_raw[["RNA"]], layer = "counts.Gene Expression")
+# filt.matrix <- LayerData(seurat[["RNA"]], layer = "counts.Gene Expression") # get the layer we want
+# seurat <- CreateSeuratObject(counts = filt.matrix)  # re-create the object using one-layer matrix
+# seurat_raw <- CreateSeuratObject(counts = raw.matrix)   # same steps for raw matrix
+# raw.matrix <- LayerData(seurat_raw[["RNA"]], layer = "counts.Gene Expression")
 
 seurat <- NormalizeData(seurat, verbose = F)
 seurat <- FindVariableFeatures(seurat, verbose = F)

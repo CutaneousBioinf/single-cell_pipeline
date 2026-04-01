@@ -1,4 +1,4 @@
-name: sc-pipeline
+name: sc-pipeline-test
 channels:
   - conda-forge
 dependencies:
@@ -22,3 +22,4 @@ dependencies:
       - pandas==2.2.3
       - scanpy==1.10.4
       - scikit-image==0.25.1
+      - matplotlib_venn==1.1.2
