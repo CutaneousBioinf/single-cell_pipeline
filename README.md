@@ -7,7 +7,7 @@ Check out the second page of the slides in the repo
 
 
 ## 1. Setting up your local repo:
-    $ git clone https://github.com/lica-2025/single-cell_pipeline.git
+    $ git clone https://github.com/CutaneousBioinf/single-cell_pipeline.git
     $ cd single-cell_pipeline
 
 
